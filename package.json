@@ -1,4 +1,5 @@
 {
+  "homepage": "http://RzManhunt.github.io/weather_map",
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +10,8 @@
     "styled-components": "^4.4.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -30,6 +33,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.1.1",
     "prop-types": "^15.7.2"
   }
 }
