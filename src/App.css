@@ -1,0 +1,335 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /*border: 1px solid black;*/
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/*
+*
+* NavBar
+*
+*/
+
+.nav-bar {
+  background: linear-gradient(30deg,#0ca2e0 0%,#25dde4 100%);
+  box-shadow: -5px -5px 25px black;
+  padding: 0 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+.menu-button { margin: 0.75rem 2rem; }
+/*
+*
+* MenuButton
+*
+*/
+
+.menu-button {
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.menu-button .circle-bar {
+  position: absolute;
+  background-color: black;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  width: 20%;
+  height: 20%;
+  transition: all 0.6s;
+}
+
+.circle-bar.top {
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+}
+
+.circle-bar.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle-bar.bottom {
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+}
+
+.menu-button.close:hover .circle-bar.top {
+  top: 25%;
+  transform: translate(-50%, -20%);
+}
+
+.menu-button.close:hover .circle-bar.bottom {
+  bottom: 20%;
+  transform: translate(-50%, 20%);
+}
+
+.menu-button.open .circle-bar.top {
+  animation-name: circleTopToBar;
+}
+
+.menu-button.open .circle-bar.bottom {
+  animation-name: circleBottomToBar;
+}
+
+.menu-button.open .circle-bar.top,
+.menu-button.open .circle-bar.bottom {
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+}
+
+.menu-button.close .circle-bar.top {
+  animation-name: barToCircleTop;
+}
+
+.menu-button.close .circle-bar.bottom {
+  animation-name: barToCircleBottom;
+}
+
+.menu-button.close .circle-bar.top,
+.menu-button.close .circle-bar.bottom {
+  animation-duration: 0.6s;
+  animation-direction: reverse;
+}
+
+@keyframes circleTopToBar {
+  0% {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%) rotate(-45deg);
+    width: 25%;
+  }
+  75%{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 25%;
+  }
+  100% {
+    border-radius: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 100%;
+  }
+}
+
+@keyframes circleBottomToBar {
+  0% {
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    width: 25%;
+  }
+  75%{
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%) rotate(45deg);
+    width: 25%;
+  }
+  100% {
+    border-radius: 15px;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%) rotate(45deg);
+    width: 100%;
+  }
+}
+
+@keyframes barToCircleTop {
+  0% {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%) rotate(-45deg);
+    width: 25%;
+  }
+  75%{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 25%;
+  }
+  100% {
+    border-radius: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 100%;
+  }
+}
+
+@keyframes barToCircleBottom {
+  0% {
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    width: 25%;
+  }
+  75%{
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%) rotate(45deg);
+    width: 25%;
+  }
+  100% {
+    border-radius: 15px;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%) rotate(45deg);
+    width: 100%;
+  }
+}
+
+/*
+*
+* DropDown
+*
+*/
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 0;
+  position: absolute;
+  background-color: skyblue;
+  min-width: 25vw;
+  box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.4);
+  transition: all 0.8s;
+}
+
+.dropdown-content.show {
+  height: 85vh;
+}
+
+
+
+
+
+.prognosis-drop {
+  background-color: skyblue;
+  padding: 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px; 
+  box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.4);
+  height: 100%;
+  left: 25vw;
+  position: absolute;
+  transition: all 0.8s;
+  top: 0;
+  width: 0;
+}
+
+.prognosis-drop.show{
+  width: 57vw;
+  padding: 2rem;
+}
+
+.select-country, .input-city, .prognosis-button {
+  display: none;
+  width: 100%;
+  transition: all 0.8s;
+  padding: 1rem 0.5rem;
+  margin: 2rem 0;
+}
+
+.prognosis-button {
+  background-color: blue;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+.select-country.show,
+.input-city.show,
+.prognosis-button.show {
+  display: block;
+}
+
+/* Prognosis */
+.prognosis-container {
+  padding: 3rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.prognosis-header {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: blue;
+  color: white;
+}
+.prognosis-body {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: lightgray;
+}
+.prognosis-left,
+.prognosis-right {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+.prognosis-left .weather-icon {
+  height: 100px;
+}
+.prognosis-left .weather-icon > img {
+  height: 100%;
+}
+.prognosis-left > div {
+  font-size: 3rem;
+  font-weight: bold;
+}
+.prognosis-right > div {
+  padding-top: 1.5rem;
+}
+.prognosis-right > div:first-child {
+  padding-top: 0;
+}
+
+/* Loader */
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
